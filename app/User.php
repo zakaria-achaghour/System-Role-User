@@ -5,6 +5,7 @@ namespace App;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Auth;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','phone','birthday',
     ];
 
     /**
@@ -37,6 +38,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+   /* public function profile(){
+        return $this->hasOne('App\Profile');
+    }
+*/
     public function roles(){
         return $this->belongsToMany('App\Role')->withTimestamps();
     }
@@ -54,5 +59,16 @@ class User extends Authenticatable
             return true;   
            }
            return false;
+    }
+
+    public  function chek_user($user){
+        
+        if( Auth::user() != $user )
+           {return false;}
+       else 
+       {
+        return true;
+       } 
+         
     }
 }

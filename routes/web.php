@@ -24,7 +24,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 
 
-Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware('can:user.manage')->group(function(){
+// partie user  front 
+Route::patch('/user/{user}', 'UserController@update')->name('update');
+Route::get('/user/{user}/edit', 'UserController@edit')->name('edit');
+Route::put('/user/{user}', 'UserController@change_password')->name('change_password');
+
+
+
+
+// partie admin 
+Route::namespace('Admin')->prefix('admin')->name('admin.')->middleware(['can:user.manage'])->group(function(){
 
     Route::resource('/users', 'UsersController')->except(['show']);
 

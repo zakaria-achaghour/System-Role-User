@@ -9,15 +9,22 @@
 
     <title>{{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <!-- Scripts 
+    <script src="{ asset('js/app.js') }}" defer></script>
+    <script src="{ asset('js/bootstrap.js') }}" defer></script>
+-->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
-    <!-- Styles -->
+    <!-- Styles
+    <link href="{ asset('css/bootstrap.css') }}" rel="stylesheet"> -->
+    <link href="{{ asset('css\bootstrap.min.css') }}" rel="stylesheet">
+    
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="app">
@@ -60,6 +67,13 @@
                                         users managment
                                     </a>
                                     @endcan
+
+                                   
+                                    
+                                    <a class="dropdown-item" href="{{ route('edit',['user' => Auth::id()]) }}">
+                                        Edit Profile
+                                    </a>
+                                  
                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -89,5 +103,10 @@
             </div>
         </main>
     </div>
-</body>
+    <script src="{{ asset('js/jQuery.js') }}" ></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+    <script src="{{ asset('js/app.js') }}" ></script>
+
+
+    </body>
 </html>

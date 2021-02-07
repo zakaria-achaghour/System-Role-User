@@ -4,6 +4,7 @@ namespace App\Policies;
 
 use App\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class UserPolicy
 {
@@ -17,7 +18,7 @@ class UserPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        
     }
 
     /**
@@ -53,7 +54,7 @@ class UserPolicy
     
     public function edit(User $user, User $model)
     {
-        return $user->hasRole('admin');
+        return  $user->hasRole('admin');
         
     }
 
@@ -83,6 +84,14 @@ class UserPolicy
         return $user->hasRole('admin');
     }
 
+
+
+    /* very important this meyhod */
+    public function editeProfile(User $user, User $model){
+        return $user->chek_user($model);
+    }
+
+    
     /**
      * Determine whether the user can restore the model.
      *
@@ -106,4 +115,12 @@ class UserPolicy
     {
         //
     }
+     /**
+     * Determine whether the user can permanently delete the model.
+     *
+     * @param  \App\User  $user
+     * @param  \App\User  $model
+     * @return mixed
+     */
+   
 }
